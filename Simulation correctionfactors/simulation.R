@@ -58,11 +58,12 @@ for(i in 1:1000){
 save(corrs.sph.re, file = "simulation correctionfactors/corr-reweighted-sph.RData")
 
 # Auswertung
+load(file = "simulation correctionfactors/corr-reweighted-sph.RData")
 c.sph.re <- matrix(rep(0, 8), ncol = 2)
 for(i in 1:1000){
   c.sph.re <- c.sph.re + corrs.sph.re[[i]]$correctionfactors
 }
-c.sph.re/1000
+round(c.sph.re/1000, 2)
 
 
 # 4.Simulate correction factors for the unreweighted estimator and the true variogram model
@@ -76,14 +77,13 @@ for(i in 1:1000){
 
 save(corrs.sph, file = "simulation correctionfactors/corr-sph.RData")
 
-load(file = "simulation correctionfactors/corr-sph.RData")
-
 # Auswertung
+load(file = "simulation correctionfactors/corr-sph.RData")
 c.sph <- matrix(rep(0, 8), ncol = 2)
 for(i in 1:1000){
   c.sph <- c.sph + corrs.sph[[i]]$correctionfactors
 }
-c.sph/1000
+round(c.sph/1000, 2)
 
 
 # 5.Simulate correction factors for the reweighted estimator and the false variogram model

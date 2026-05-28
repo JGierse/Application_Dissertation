@@ -54,6 +54,9 @@ data$day_total <- rowSums(data[,times])
 # sum of morning hours
 data$morning_total <- rowSums(data[,mornings])
 
+# normalized daily total
+data$day_norm <- data$day_total/data$Generator.Capacity
+
 
 ##################
 ## Filter Columns

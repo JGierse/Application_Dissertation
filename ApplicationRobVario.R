@@ -132,17 +132,6 @@ p.varog.sq <- ggplot(varog.sq, mapping = aes(x = lag, y = variogram, color = est
   theme(legend.position = "bottom")
 ggsave("C:/Users/paulg/Sciebo2/Diss/Grafiken/RobVario/Variograms.pdf", width = 22, units = "cm")
 
-# variogram estimation in other directions
-varog.non <- variogram_est_general(dat.non, h = rbind(c(1,2), c(2,4), c(2,1), c(4,2)),
-                                   estimator = c("matheron", "genton", "mcd.diff"),
-                                   reweighting = TRUE)
-cbind(varog.non)
-
-varog.sq <- variogram_est_general(dat.sq, h = rbind(c(1,2), c(2,4), c(2,1), c(4,2)),
-                                   estimator = c("matheron", "genton", "mcd.diff"),
-                                   reweighting = TRUE)
-
-
 
 
 ####################
@@ -161,4 +150,7 @@ test.sub <- isotropy_test(data, lagmat = rbind(c(1,0), c(0,1), c(1,1), c(1,-1)),
 res <- rbind(c("matheron" = test.block$matheron$p.value, "genton" = test.block$genton$p.value, "mcd" = test.block$MCD$p.value),
              c("matheron" = test.sub$matheron$p.value, "genton" = test.sub$genton$p.value, "mcd" = test.sub$MCD$p.value))
 rownames(res) <- c("blockpermutation", "subsampling")
-res
+round(res, 2)
+#                  matheron genton  mcd
+# blockpermutation     0.00   0.01 0.01
+# subsampling          0.03   0.09 0.05
